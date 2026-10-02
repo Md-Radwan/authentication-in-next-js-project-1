@@ -1,6 +1,6 @@
 "use client";
 
-import { signUp } from "@/lib/auth-client";
+import { signIn, signUp } from "@/lib/auth-client";
 import { Check } from "@gravity-ui/icons";
 import {
   Button,
@@ -11,6 +11,7 @@ import {
   Label,
   TextField,
 } from "@heroui/react";
+import { google } from "better-auth";
 
 const SignUpPage = () => {
 
@@ -33,8 +34,15 @@ const SignUpPage = () => {
 
   };
 
+  const handleGoogleSignIn = async() => {
+    const resData = await signIn.social({
+      provider: 'google'
+    })
+  }
+
   return (
-    <div className="flex flex-col items-center justify-center py-10">
+    <div>
+      <div className="flex flex-col items-center justify-center py-10">
       <h1 className="text-2xl font-bold">Please Sign Up</h1>
       <Form className="flex w-96 flex-col gap-4" onSubmit={onSubmit}>
         <TextField
@@ -100,8 +108,11 @@ const SignUpPage = () => {
           <Button type="reset" variant="secondary">
             Reset
           </Button>
+          
         </div>
+      <Button onClick={handleGoogleSignIn}>Sign In with Google</Button>
       </Form>
+    </div>
     </div>
   );
 };
