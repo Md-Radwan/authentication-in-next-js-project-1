@@ -30,7 +30,7 @@ const SignUpPage = () => {
       password: data.password 
     });
 
-    console.log("resData and error", resData, error)
+    console.log("after sign up", resData, error)
 
   };
 
